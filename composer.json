@@ -1,0 +1,14 @@
+{
+    "name": "mocavo/queued-http-client",
+    "description": "Laravel package to queued up HTTP calls for later delivery",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Garner",
+            "email": "matt@mocavo.com"
+        }
+    ],
+    "require": {
+        "guzzle/guzzle": ">= 3.0"
+    }
+}
