@@ -12,7 +12,7 @@ Using a local queue to store callback messages allows a completely asynchronous 
 
 Add `mocavo/queued-http-client` to `composer.json`.
 ```json
-    "mocavo/queued-http-client": "1.0"
+    "mocavo/queued-http-client": "dev-master"
 ```    
 Run `composer update` to pull down QueuedHttpClient. 
 
