@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-0": {
-            "mocavo\\QueuedHttpClient": "src/"
+            "Mocavo\\QueuedHttpClient": "src/"
         }
     },
     "minimum-stability": "dev"
