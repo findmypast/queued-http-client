@@ -1,4 +1,4 @@
-<?php namespace mocavo\QueuedHttpClient;
+<?php namespace Mocavo\QueuedHttpClient;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Queue;

@@ -1,8 +1,8 @@
-<?php namespace mocavo\QueuedHttpClient\Facades;
+<?php namespace Mocavo\QueuedHttpClient\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class QueuedHTTPClientFacade extends Facade {
+class QueuedHttpClient extends Facade {
 
 	protected static function getFacadeAccessor() { return 'queuedhttpclient'; }
 
