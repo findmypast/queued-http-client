@@ -12,12 +12,12 @@ class QueuedHttpClient {
         QueuedHttpClient::enqueue($url, 'GET', $payload);
     }
 
-    public static function post($url, $payload)
+    public static function post($url, $payload = null)
     {
         QueuedHttpClient::enqueue($url, 'POST', $payload);
     }
 
-    public static function put($url, $payload)
+    public static function put($url, $payload = null)
     {
         QueuedHttpClient::enqueue($url, 'PUT', $payload);
     }
@@ -40,11 +40,10 @@ class QueuedHttpClient {
 
     public static function enqueue($url, $method, $payload)
     {
-
         $callback_data = [
             'callback_url' => $url,
             'callback_method' => $method,
-            'callback_payload_base64' => base64_encode($payload),
+            'callback_payload_base64' => base64_encode(serialize($payload)),
             'callback_timestamp' => time()
         ];
 
@@ -57,7 +56,8 @@ class QueuedHttpClient {
     {
         $callback_url = $data['callback_url'];
         $method =  strtoupper($data['callback_method']);
-        $payload = base64_decode($data['callback_payload_base64']);
+        $payload = unserialize(base64_decode($data['callback_payload_base64']));
+
 
         if(empty($callback_url)) {
             Log::warning('Empty callback URL');
@@ -83,23 +83,10 @@ class QueuedHttpClient {
             return FALSE;
         }
 
-        if(empty($response)) {
-            if ($job->attempts() > 60) {
-                QueuedHttpClient::logFailedCallback($job, $data, null, 'hard');
-                $job->delete();
-            } else {
-                QueuedHttpClient::logFailedCallback($job, $data, null, 'soft');
-                $job->release(60);
-            }
-            return FALSE;
-        }
-
         try {
             $response = $request->send();
 
-            $response = $response->json();
-
-            if($response->success == false) {
+            if ($response->getStatusCode() != 200) {
 
                 if ($job->attempts() > 60) {
                     QueuedHttpClient::logFailedCallback($job, $data, $response, 'hard');
