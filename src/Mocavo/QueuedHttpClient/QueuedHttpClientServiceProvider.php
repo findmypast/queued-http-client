@@ -8,7 +8,7 @@ class QueuedHttpClientServiceProvider extends ServiceProvider {
     {
         $this->app->bind('queuedhttpclient', function()
         {
-            return new \mocavo\QueuedHttpClient\QueuedHttpClient;
+            return new \Mocavo\QueuedHttpClient\QueuedHttpClient;
         });
     }
 
