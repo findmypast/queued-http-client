@@ -1,14 +1,27 @@
 {
     "name": "mocavo/queued-http-client",
+    "type": "library",
     "description": "Laravel package to queued up HTTP calls for later delivery",
+    "keywords": ["laravel","guzzle","http"],
+    "homepage": "http://github.com/mocavo/queued-http-client",
     "license": "MIT",
     "authors": [
         {
             "name": "Matt Garner",
             "email": "matt@mocavo.com"
+        },
+        {
+            "name": "Richard K. Miller",
+            "email": "richard@mocavo.com"
         }
     ],
     "require": {
         "guzzle/guzzle": ">= 3.0"
-    }
+    },
+    "autoload": {
+        "psr-0": {
+            "mocavo\\QueuedHttpClient": "src/"
+        }
+    },
+    "minimum-stability": "dev"
 }
